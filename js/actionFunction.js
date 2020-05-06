@@ -1,5 +1,5 @@
 let snapShot;
-let intervalID;
+let intervalId;
 const sendImg = "kth/dm2518/yolo3/dm2518lab5cy/imgb4"
 const sendJson= "kth/dm2518/reply/yolo3/dm2518lab5cy/json"
 
