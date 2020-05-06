@@ -51,7 +51,7 @@ function onMessageArrived(message) {
         console.log(array);
         array.forEach(element => {
             if (element[0] == "person") {
-                alarm = true
+                alarm = true;
             }
         });
         if (alarm) {
@@ -64,7 +64,8 @@ function onMessageArrived(message) {
 
 
 //    const client = new Paho.MQTT.Client("ws://mqtt.eclipse.org/mqtt", "myJSClientId" + new Date().getTime());
-const client = new Paho.MQTT.Client("wss://test.mosquitto.org:8080/mqtt", "myJSClientId" + new Date().getTime());
+const client = new Paho.MQTT.Client("ws://test.mosquitto.org:8080/mqtt", "myJSClientId" + new Date().getTime());
 client.onMessageArrived = onMessageArrived;
 client.onConnectionLost = onConnectionLost;
+console.log("connecting...");
 client.connect({ onSuccess: onConnect });
