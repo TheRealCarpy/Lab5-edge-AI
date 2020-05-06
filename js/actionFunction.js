@@ -64,7 +64,7 @@ function onMessageArrived(message) {
 
 
 //    const client = new Paho.MQTT.Client("ws://mqtt.eclipse.org/mqtt", "myJSClientId" + new Date().getTime());
-const client = new Paho.MQTT.Client("ws://test.mosquitto.org:8080/mqtt", "myJSClientId" + new Date().getTime());
+const client = new Paho.MQTT.Client("wss://test.mosquitto.org:8080/mqtt", "myJSClientId" + new Date().getTime());
 client.onMessageArrived = onMessageArrived;
 client.onConnectionLost = onConnectionLost;
 client.connect({ onSuccess: onConnect });
