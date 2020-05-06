@@ -2,6 +2,9 @@ let snapShot;
 const sendImg = "kth/dm2518/yolo3/dm2518lab5cy/imgb4"
 const sendJson= "kth/dm2518/reply/yolo3/dm2518lab5cy/json"
 
+function send_alarm(){
+    speechSynthesis.speak(new SpeechSynthesisUtterance("Get off my lawm!"));
+}
 function take_snapshot() {
     Webcam.snap(function(data_uri) {
         snapShot = data_uri;
@@ -29,15 +32,26 @@ function onConnectionLost(responseObject) {
 }
 
 function onMessageArrived(message) {
-    console.log("Got message on topic " + message.destinationName + " with payload: " + message.payloadString);
-    let el= document.createElement('div')
-    el.innerHTML = message.payloadString
-    document.body.appendChild(el)
+    if (nessage.destinationName == sendJson) {
+        console.log(message.payloadString);
+        let array = JSON.parse(message.payloadString);
+        let alarm = false
+        console.log(array);
+        array.forEach(element => {
+            if (element[0] == "person") {
+                alarm = true
+            }
+        });
+        if (alarm) {
+            send_alarm();
+        }
+    } else {
+        document.getElementById("resultImg").src = message.payloadString;
+    }
 }
 
 //    const client = new Paho.MQTT.Client("ws://mqtt.eclipse.org/mqtt", "myJSClientId" + new Date().getTime());
 const client = new Paho.MQTT.Client("ws://test.mosquitto.org:8080/mqtt", "myJSClientId" + new Date().getTime());
-const myTopic = "testTopic";
 client.onMessageArrived = onMessageArrived;
 client.onConnectionLost = onConnectionLost;
 client.connect({ onSuccess: onConnect });
