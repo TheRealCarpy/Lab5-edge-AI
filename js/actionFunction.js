@@ -1,7 +1,6 @@
 let snapShot;
 let intervalId;
-const sendImg = "kth/dm2518/yolo3/dm2518lab5cy/imgb4"
-const sendJson= "kth/dm2518/reply/yolo3/dm2518lab5cy/json"
+
 
 function send_alarm(){
     speechSynthesis.speak(new SpeechSynthesisUtterance("Get off my lawm!"));
@@ -11,7 +10,7 @@ function take_snapshot() {
         Webcam.snap(function(data_uri) {
             snapShot = data_uri;
         });
-        client.send(sendImg, snapShot);
+        client.send("kth/dm2518/yolo3/dm2518lab5cy/imgb64", snapShot);
     }, 3000);
 }
 
@@ -21,8 +20,8 @@ function stop_snapshot() {
 
 function onConnect() {
     console.log("connection is successful!")
-    client.subscribe(sendImg)
-    client.subscribe(sendJson)
+    client.subscribe("kth/dm2518/reply/yolo3/dm2518lab5cy/imgb64")
+    client.subscribe("kth/dm2518/reply/yolo3/dm2518lab5cy/json")
 }
 
 const publish = (topic, msg) => {  //takes topic and message string
@@ -39,7 +38,7 @@ function onConnectionLost(responseObject) {
 }
 
 function onMessageArrived(message) {
-    if (nessage.destinationName == sendJson) {
+    if (nessage.destinationName == "kth/dm2518/reply/yolo3/dm2518lab5cy/json") {
         console.log(message.payloadString);
         let array = JSON.parse(message.payloadString);
         let alarm = false
