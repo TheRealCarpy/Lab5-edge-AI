@@ -3,8 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript">
+    </script>
+    <script src="js/actionFunction.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/webcam.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript">
+    </script>
+
 </head>
 <body>
+    <h1>Minimal application</h1>
+
+    <div id="my_camera"></div><br>
+    <input type="button" value="Take a photo!" onclick="take_snapshot()">
+    <div id="result"></div>
+
+    <script language="JavaScript">
+        Webcam.set({
+            width: 320,
+            height: 240,
+            image_format: 'jpeg',
+            jpeg_quality: 90
+        });
+        Webcam.attach('#my_camera');
+    </script>
 
 </body>
 </html>
