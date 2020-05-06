@@ -1,4 +1,5 @@
 let snapShot;
+let intervalID;
 const sendImg = "kth/dm2518/yolo3/dm2518lab5cy/imgb4"
 const sendJson= "kth/dm2518/reply/yolo3/dm2518lab5cy/json"
 
@@ -6,10 +7,12 @@ function send_alarm(){
     speechSynthesis.speak(new SpeechSynthesisUtterance("Get off my lawm!"));
 }
 function take_snapshot() {
-    Webcam.snap(function(data_uri) {
-        snapShot = data_uri;
-    });
-    client.send(sendImg, snapShot);
+    intervalId = setInterval(function () {
+        Webcam.snap(function(data_uri) {
+            snapShot = data_uri;
+        });
+        client.send(sendImg, snapShot);
+    }, 3000);
 }
 
 function onConnect() {
