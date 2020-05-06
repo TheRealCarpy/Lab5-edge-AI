@@ -44,7 +44,7 @@ function onConnectionLost(responseObject) {
 
 
 function onMessageArrived(message) {
-    if (nessage.destinationName == "kth/dm2518/reply/yolo3/dm2518lab5cy/json") {
+    if (message.destinationName == "kth/dm2518/reply/yolo3/dm2518lab5cy/json") {
         console.log(message.payloadString);
         let array = JSON.parse(message.payloadString);
         let alarm = false
