@@ -15,6 +15,10 @@ function take_snapshot() {
     }, 3000);
 }
 
+function stop_snapshot() {
+    clearInterval(intervalId);
+}
+
 function onConnect() {
     console.log("connection is successful!")
     client.subscribe(sendImg)
