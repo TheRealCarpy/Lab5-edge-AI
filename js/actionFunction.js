@@ -13,7 +13,7 @@ function take_snapshot() {
             snapShot = data_uri;
         });
         client.send("kth/dm2518/yolo3/dm2518lab5cy/imgb64", snapShot);
-    }, 3000);
+    }, 10000);
 }
 
 function stop_snapshot() {
